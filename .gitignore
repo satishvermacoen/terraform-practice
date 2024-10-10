@@ -1,0 +1,8 @@
+azure-01-basic-vm-deploy/.terraform/providers/registry.terraform.io/hashicorp/random/3.6.3/linux_amd64/LICENSE.txt
+azure-01-basic-vm-deploy/terraform.tfstate
+azure-01-basic-vm-deploy/.terraform
+azure-01
+azure-01-basic-vm-deploy/.terraform/providers/registry.terraform.io/hashicorp/random/3.6.3/linux_amd64/terraform-provider-random_v3.6.3_x5
+azure-01-basic-vm-deploy/terraform.tfstate.backup
+azure-01-basic-vm-deploy/.terraform.lock.hcl
+git-push-azure-infra/.github/workflows
