@@ -1,0 +1,40 @@
+name: deploy_frontend
+
+# Deploys when push is made from frontend folder
+on:
+    push:
+        branches: [ main ]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # Checkout the repository to the GitHub Actions runner
+    steps:            
+    - uses: actions/checkout@v4
+    - name: login with azure 
+      uses: azure/login@v2
+      with:
+        creds: ${{ secrets.azure_cerdi }}
+    
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run: terraform init
+
+    # Download saved plan from artifacts  
+    - name: Download Terraform Plan
+      uses: actions/download-artifact@v4
+      with:
+        name: tfplan
+
+    # Terraform Apply
+    - name: Terraform Apply
+      run: terraform apply -auto-approve tfplan
+    
+    # Azure logout
+    - name: azure logout
+      run: |
+            az logout
